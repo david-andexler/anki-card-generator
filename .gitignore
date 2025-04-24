@@ -269,8 +269,14 @@ dump.rdb
 
 .pytest_cache/
 .ipython/
+
+# Secrets
 .env
+# Ignore everything in the .envs/ directory
 .envs/*
-!.envs/.local/
+# Allow the .envs/.local/.sample directory
+!.envs/.local/.sample/
+!.envs/.local/.sample/**
+
 app/data/
 app/data/*
