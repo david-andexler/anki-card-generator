@@ -18,4 +18,5 @@ def send_to_ankiweb(fields: dict[str, str]) -> Any:
     }
     payload = {"action": "addNote", "version": 6, "params": {"note": note}}
     response = requests.post("http://localhost:8765", json=payload, timeout=10)
+    response.raise_for_status()  # Raise an error for HTTP issues
     return response.json()
