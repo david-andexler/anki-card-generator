@@ -74,6 +74,10 @@ RUN groupadd --gid 1000 dev-user \
   && echo dev-user ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/dev-user \
   && chmod 0440 /etc/sudoers.d/dev-user
 
+# Give dev-user ownership of $PYSETUP_PATH
+RUN chown -R dev-user:dev-user $PYSETUP_PATH \
+  && chown -R dev-user:dev-user /home/dev-user
+
 # Code mount point
 WORKDIR $APP_PATH
 

@@ -1,5 +1,5 @@
 {
-    "name": "app_template_dev",
+    "name": "anki-card-generator",
     "dockerComposeFile": [
         "../compose/local/docker-compose.local.yml",
         "../compose/local/docker-compose.docs.yml" // Add the docs Compose file here
