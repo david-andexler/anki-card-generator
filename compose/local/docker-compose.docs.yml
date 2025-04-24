@@ -6,7 +6,7 @@ services:
       context: ../..
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
-      - ../../.envs/.local/.app
+      - ../../.envs/.local/.live/.app
     volumes:
       - ../../docs:/docs:z
       - ../../app/config:/app/config:z
