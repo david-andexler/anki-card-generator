@@ -42,6 +42,7 @@ jobs:
       # Eventually, this should be moved over to env variables inserted into the docker image
       - name: Copy .sample environment files
         run: |
+          mkdir -p .envs/.local/.live
           cp .envs/.local/.sample/.app .envs/.local/.live/.app
           cp .envs/.local/.sample/.openai .envs/.local/.live/.openai
 
