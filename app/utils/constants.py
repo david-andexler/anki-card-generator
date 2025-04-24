@@ -1,0 +1,22 @@
+AVAILABLE_LANGUAGES = [
+    # Capitalize them
+    "English",
+    "French",
+    "German",
+    "Italian",
+    "Portuguese",
+    "Spanish",
+    "Dutch",
+    "Swedish",
+    "Norwegian",
+    "Danish",
+    "Finnish",
+    "Russian",
+    "Chinese",
+    "Japanese",
+    "Korean",
+    "Arabic",
+    "Turkish",
+    "Hindi",
+    "Bengali",
+]
