@@ -16,8 +16,8 @@ services:
     volumes:
       - ../../:/app:z
     env_file:
-      - ../../.envs/.local/.app
-      - ../../.envs/.local/.postgres
+      - ../../.envs/.local/.live/.app
+      - ../../.envs/.local/.live/.openai
     ports:
       - '8000:8000'
     command: /start

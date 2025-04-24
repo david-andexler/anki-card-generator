@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anki Card Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Anki Card Generator</h1>
+    </header>
+    <main>
+        <section>
+            <form action="/generate" method="post">
+                <label for="word">Enter a word or phrase:</label>
+                <input type="text" id="word" name="word" required>
+                <label for="target_language">Select target language:</label>
+                <select id="target_language" name="target_language">
+                    {% for lang in languages %}
+                    <option value="{{ lang }}" {% if lang=="Spanish" %}selected{% endif %}>{{ lang }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- allow user to select what language the translations should be in -->
+                <label for="translation_language">Select translation language:</label>
+                <select id="translation_language" name="translation_language">
+                    {% for lang in languages %}
+                    <option value="{{ lang }}" {% if lang=="English" %}selected{% endif %}>{{ lang }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Generate Card</button>
+            </form>
+        </section>
+
+        {% if preview %}
+        <section>
+            <h2>Card Preview</h2>
+            <p><strong>Front:</strong> {{ preview["Cloze Sentence"] }}</p>
+            <p><strong>Back:</strong> {{ preview["Translation"] }}</p>
+            <p><strong>Grammar Notes:</strong> {{ preview["Grammar Notes"] }}</p>
+            <p><strong>Full Sentence:</strong> {{ preview["Full Sentence"] }}</p>
+            <p><strong>Image:</strong> <img src="{{ preview[" Image"] }}" alt="Preview Image"></p>
+            <p><strong>Audio:</strong> <audio controls>
+                    <source src="{{ preview[" AudioSentence"] }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio></p>
+            <form action="/submit" method="post">
+                <input type="hidden" name="word" value="{{ preview[" Cloze Sentence"] }}">
+                <button type="submit">Submit to Anki</button>
+            </form>
+        </section>
+        {% endif %}
+
+        {% if confirmation %}
+        <section class="confirmation">
+            <h2>Card Submitted!</h2>
+            <p>Your card has been successfully added to Anki.</p>
+        </section>
+        {% endif %}
+
+        {% if error %}
+        <section class="error">
+            <h2>Error</h2>
+            <p><strong>Error Message:</strong> {{ error }}</p>
+        </section>
+        {% endif %}
+    </main>
+    <footer>
+    </footer>
+</body>
+
+</html>
