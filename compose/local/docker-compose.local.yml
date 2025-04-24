@@ -1,0 +1,36 @@
+# volumes:
+#   local_postgres_data: {}
+#   local_postgres_data_backups: {}
+
+services:
+  local-app:
+    build:
+      context: ../.. # Points to root of project
+      dockerfile: ./compose/local/app/Dockerfile
+      target: development
+    image: local_app
+    container_name: local_app
+    # Uncomment the following line to enable the PostgreSQL service
+    # depends_on:
+    #   - postgres
+    volumes:
+      - ../../:/app:z
+    env_file:
+      - ../../.envs/.local/.app
+      - ../../.envs/.local/.postgres
+    ports:
+      - '8000:8000'
+    command: /start
+
+  # Uncomment the following lines to enable the PostgreSQL service
+  # postgres:
+  #   build:
+  #     context: ../..  # Adjusted to point to the root of the project
+  #     dockerfile: ./compose/production/postgres/Dockerfile
+  #   image: production_postgres
+  #   container_name: local_postgres
+  #   volumes:
+  #     - local_postgres_data:/var/lib/postgresql/data
+  #     - local_postgres_data_backups:/backups
+  #   env_file:
+  #     - ../../.envs/.local/.postgres  # Updated path to .env file
