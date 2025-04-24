@@ -273,3 +273,4 @@ dump.rdb
 .envs/*
 !.envs/.local/
 app/data/
+app/data/*

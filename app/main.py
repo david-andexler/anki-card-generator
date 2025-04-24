@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI
@@ -6,14 +7,19 @@ from fastapi import Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from utils.anki_api import send_to_ankiweb
-from utils.image_fetcher import fetch_image_url
-from utils.openai_client import generate_anki_fields
-from utils.tts_client import generate_audio_files
+
+from app.utils.anki_api import send_to_ankiweb
+from app.utils.image_fetcher import fetch_image_url
+from app.utils.openai_client import generate_anki_fields
+from app.utils.tts_client import generate_audio_files
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount(
+    "/static",
+    StaticFiles(directory=(Path(__file__).parent / "static")),
+    name="static",
+)
+templates = Jinja2Templates(directory=Path(__file__).parent / "templates")
 
 
 @app.get("/", response_class=HTMLResponse)  # type: ignore[misc]
