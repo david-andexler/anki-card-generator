@@ -1,4 +1,4 @@
-# Template - Python, Poetry, Docker, Devcontainers
+# anki-card-generator
 
 This repository provides a template for developing Python applications using **Poetry** for dependency management, **Docker** for containerization, and **Devcontainers** for a seamless development environment in **VS Code**. It includes configurations for local development, testing, and production deployment.
 
