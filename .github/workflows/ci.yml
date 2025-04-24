@@ -39,6 +39,11 @@ jobs:
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
+      # Eventually, this should be moved over to env variables inserted into the docker image
+      - name: Copy .sample environment files
+        run: |
+          cp .envs/.local/.sample/.app .envs/.local/.live/.app
+          cp .envs/.local/.sample/.openai .envs/.local/.live/.openai
 
       - name: Build the Stack
         run: docker compose -f compose/local/docker-compose.local.yml build local-app
