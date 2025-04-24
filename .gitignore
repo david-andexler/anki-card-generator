@@ -272,3 +272,4 @@ dump.rdb
 .env
 .envs/*
 !.envs/.local/
+app/data/
