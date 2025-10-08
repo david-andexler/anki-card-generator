@@ -2,7 +2,7 @@
 # PYTHON-BASE
 # Env variables
 ################################
-FROM python:3.13.3-slim AS python-base
+FROM python:3.13.8-slim AS python-base
 
 # python
 ENV PYTHONUNBUFFERED=1 \
